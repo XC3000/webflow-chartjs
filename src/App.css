@@ -1,101 +1,101 @@
 html {
-  font-size: 100%;
+    font-size: 100%;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .App {
-  height: 100vh;
+    height: 100vh;
 }
 
 .edufund {
-  padding: 6rem;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: #f3fdf8;
+    padding: 6rem;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #f3fdf8;
 }
 
 .edufund__rangeselect {
-  flex: 30%;
-  margin: 10px;
-  padding: 20px;
-  font-size: 1.5rem;
-  border-radius: 4px;
-  box-shadow: 0 10px 24px 0 rgba(156, 162, 174, 0.26);
-  border: solid 1px rgba(11, 27, 62, 0.05);
-  background-color: #fff;
+    flex: 30%;
+    margin: 10px;
+    padding: 20px;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    box-shadow: 0 10px 24px 0 rgba(156, 162, 174, 0.26);
+    border: solid 1px rgba(11, 27, 62, 0.05);
+    background-color: #fff;
 }
 
 .edufund__rangeslect__firstsection__text {
-  font-family: Montserrat;
-  font-size: 28px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.36;
-  letter-spacing: normal;
-  color: #021030;
-  margin-bottom: 3rem;
+    font-family: Montserrat;
+    font-size: 28px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    color: #021030;
+    margin-bottom: 3rem;
 }
 
 .edufund__rangeslect__firstsection {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e4e5e9;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e4e5e9;
 }
 
 .edufund__rangeselect__investment_details {
-  font-size: 20px;
-  font-weight: normal;
-  font-stretch: normal;
-  line-height: 1.75;
-  letter-spacing: 0.26px;
-  color: #354059;
+    font-size: 20px;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 1.75;
+    letter-spacing: 0.26px;
+    color: #354059;
 }
 
 .edufund__rangeselect__investment_details > input {
-  padding: 5px;
-  width: 35%;
-  margin: 0 5px;
-  border: none;
-  background: inherit;
-  outline: none;
-  text-align: center;
-  border-bottom: 1px solid #e4e5e9;
+    padding: 5px;
+    width: 35%;
+    margin: 0 5px;
+    border: none;
+    background: inherit;
+    outline: none;
+    text-align: center;
+    border-bottom: 1px solid #e4e5e9;
 }
 
 .edufund__rangeselect__investment_details > input:focus {
-  border: none;
-  outline: none;
-  border-bottom: 1px solid #e4e5e9;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #e4e5e9;
 }
 
 .edufund__chart {
-  background-color: burlywood;
-  flex: 60%;
-  margin: 10px;
-  padding: 20px;
-  font-size: 30px;
+    background-color: rgb(235, 255, 227);
+    flex: 60%;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
 }
 
 @media only screen and (max-width: 1050px) {
-  .edufund {
-    padding: 2.5rem 0;
-  }
+    .edufund {
+        padding: 2.5rem 0;
+    }
 }
 
 @media only screen and (max-width: 768px) {
-  .edufund__rangeselect {
-    flex: 80%;
-  }
-  .edufund__chart {
-    flex: 80%;
-  }
+    .edufund__rangeselect {
+        flex: 80%;
+    }
+    .edufund__chart {
+        flex: 80%;
+    }
 }
