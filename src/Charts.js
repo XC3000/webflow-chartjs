@@ -3,9 +3,11 @@ import data from "./data/data";
 import Chart from "chart.js";
 
 const Charts = () => {
+    const dataPoints = data.length;
+
     useEffect(() => {
         const ctx = document.getElementById("target").getContext("2d");
-        const sipChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: "line",
             data: {
                 labels: data.map(({ month }) => month),
@@ -20,8 +22,8 @@ const Charts = () => {
                     },
                     {
                         label: "Invested Amount",
-                        backgroundColor: "rgb(2,16,48)",
-                        borderColor: "rgb(2,16,48)",
+                        backgroundColor: "rgb(3, 78, 0, 0.6)",
+                        borderColor: "rgb(3, 78, 0, 0.6)",
                         data: data.map(({ investedAmount }) => investedAmount),
                     },
                 ],
@@ -70,10 +72,28 @@ const Charts = () => {
                 },
             },
         });
-        document.getElementById("target").prepend(sipChart.generateLegend());
-    }, []);
+        document.getElementById("target").prepend("<span>yoyo</span>");
+    }, [dataPoints]);
 
-    return <canvas id="target"></canvas>;
+    return (
+        <div className="charts-container">
+            <canvas id="target"></canvas>
+            <div className="data-overlay">
+                <span>
+                    Total Investment: ₹{" "}
+                    <span className="data-total">
+                        {data[dataPoints - 3]["investedAmount"].toFixed(2)}
+                    </span>
+                </span>
+                <span>
+                    Total Accumulation: ₹{" "}
+                    <span className="data-total">
+                        {data[dataPoints - 3]["accumulatedAmount"].toFixed(2)}
+                    </span>
+                </span>
+            </div>
+        </div>
+    );
 };
 
 export default Charts;

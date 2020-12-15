@@ -99,3 +99,28 @@ html {
         flex: 80%;
     }
 }
+
+.charts-container {
+    position: relative;
+}
+
+.data-overlay {
+    font-size: 1.15rem;
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 20%;
+    left: 20%;
+    padding: 1.25rem;
+    letter-spacing: 0.15rem;
+    background-color: rgba(170, 255, 199, 0.3);
+}
+
+.data-overlay span:not(.data-total) {
+    display: block;
+    padding: 0.5rem 0;
+}
+
+.data-total {
+    font-weight: bold;
+    font-family: monospace;
+}
