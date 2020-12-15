@@ -10,21 +10,28 @@ const Charts = () => {
         new Chart(ctx, {
             type: "line",
             data: {
-                labels: data.map(({ month }) => month),
+                labels: data
+                    .map(({ month }) => month)
+                    .filter((val, index) => index % 3 === 0),
                 datasets: [
                     {
                         label: "Accumulated Amount",
                         backgroundColor: "rgba(0,226,178, 0.4)",
                         borderColor: "rgba(0,226,178, 0.4)",
-                        data: data.map(
-                            ({ accumulatedAmount }) => accumulatedAmount
-                        ),
+                        data: data
+                            .map(
+                                ({ accumulatedAmount }) =>
+                                    accumulatedAmount / 1000
+                            )
+                            .filter((val, index) => index % 3 === 0),
                     },
                     {
                         label: "Invested Amount",
                         backgroundColor: "rgb(3, 78, 0, 0.6)",
                         borderColor: "rgb(3, 78, 0, 0.6)",
-                        data: data.map(({ investedAmount }) => investedAmount),
+                        data: data
+                            .map(({ investedAmount }) => investedAmount / 1000)
+                            .filter((val, index) => index % 3 === 0),
                     },
                 ],
             },
@@ -39,7 +46,13 @@ const Charts = () => {
                         {
                             scaleLabel: {
                                 display: true,
-                                labelString: "Amount",
+                                labelString: "Amount (thousand)",
+                            },
+                            ticks: {
+                                suggestedMax: (
+                                    data[dataPoints - 1]["accumulatedAmount"] /
+                                    1000
+                                ).toFixed(2),
                             },
                         },
                     ],
@@ -82,13 +95,13 @@ const Charts = () => {
                 <span>
                     Total Investment: ₹{" "}
                     <span className="data-total">
-                        {data[dataPoints - 3]["investedAmount"].toFixed(2)}
+                        {data[dataPoints - 1]["investedAmount"].toFixed(2)}
                     </span>
                 </span>
                 <span>
                     Total Accumulation: ₹{" "}
                     <span className="data-total">
-                        {data[dataPoints - 3]["accumulatedAmount"].toFixed(2)}
+                        {data[dataPoints - 1]["accumulatedAmount"].toFixed(2)}
                     </span>
                 </span>
             </div>
