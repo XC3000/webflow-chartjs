@@ -10,7 +10,7 @@ const { Option } = Select;
 function App() {
   const [principal, setPrincipal] = useState("");
   const [years, setYears] = useState(1);
-  /* const investType = ["Free", "Basic", "Premium"]; */
+  const [currencyicon, setCurrencyicon] = useState("₹");
 
   window.addEventListener("resize", changeDivSize);
 
@@ -22,7 +22,28 @@ function App() {
     console.log(`selected ${value}`);
   }
 
-  console.log(principal, years);
+  function getcurrencyicon(e) {
+    const dollar = document.getElementById("dollar-btn");
+    const indian = document.getElementById("inr-btn");
+    const value = e.target.value;
+    if (value === "$") {
+      setCurrencyicon("$");
+      if (!dollar.classList.contains("active")) {
+        dollar.classList.add("active");
+        if (indian.classList.contains("active"))
+          indian.classList.remove("active");
+      }
+    } else if (value === "₹") {
+      setCurrencyicon("₹");
+      if (!indian.classList.contains("active")) {
+        indian.classList.add("active");
+        if (dollar.classList.contains("active"))
+          dollar.classList.remove("active");
+      }
+    }
+  }
+
+  console.log(principal, years, currencyicon);
 
   return (
     <div className="App">
@@ -43,13 +64,13 @@ function App() {
               every month. <br />
               at{" "}
               <Select
-                defaultValue="free"
+                defaultValue="low"
                 style={{ width: 120, fontSize: "18px", fontWeight: "400" }}
                 onChange={handleChange}
               >
-                <Option value="free">Free</Option>
-                <Option value="basic">Basic</Option>
-                <Option value="premium">Premium</Option>
+                <Option value="low">Low</Option>
+                <Option value="average">Average</Option>
+                <Option value="high">High</Option>
               </Select>
               risk for{" "}
               <input
@@ -63,17 +84,75 @@ function App() {
             <div className="edufund__rangeselect__currencyselect">
               <p>Investment in</p>
               <div className="edufund__rangeselect__currencyselect__buttons">
-                <button>$</button>
-                <button className="active">₹</button>
+                <button id="dollar-btn" value="$" onClick={getcurrencyicon}>
+                  $
+                </button>
+                <button
+                  id="inr-btn"
+                  value="₹"
+                  onClick={getcurrencyicon}
+                  className="active"
+                >
+                  ₹
+                </button>
               </div>
             </div>
             <div className="edufund__rangeselect__expectations">
               <h2>What to expect</h2>
               <div className="edufund__expectations__firstdiv">
-                <img src={greengraph} alt="green graph" />
+                <img
+                  width="35"
+                  height="35"
+                  src={greengraph}
+                  alt="green graph"
+                />
+                <div className="edufund__expectations__text">
+                  <p
+                    className="edufund__expectations__text__percentage"
+                    style={{ marginRight: "10px" }}
+                  >
+                    15.4%
+                  </p>
+                  <p className="edufund__expectations__text__text">EduFund</p>
+                </div>
+                <p
+                  style={{
+                    fontSize: "0.7rem",
+                    width: "60%",
+                    paddingTop: "5px",
+                  }}
+                >
+                  Due to scheme selection, asset allocation, & savings on
+                  commissions.
+                </p>
               </div>
               <div className="edufund__expectations__seconddiv">
-                <img src={blackgraph} alt="black graph" />
+                <img
+                  width="35"
+                  height="35"
+                  src={blackgraph}
+                  alt="black graph"
+                />
+                <div className="edufund__expectations__text">
+                  <p
+                    className="edufund__expectations__text__percentage"
+                    style={{ marginRight: "10px" }}
+                  >
+                    12%
+                  </p>
+                  <p className="edufund__expectations__text__text">Balanced</p>
+                </div>
+
+                <p
+                  style={{
+                    fontSize: "0.7rem",
+                    width: "60%",
+                    paddingTop: "5px",
+                  }}
+                >
+                  The weighted average return of an aggressive and conservative
+                  investor in ratio of 65:35.
+                </p>
               </div>
             </div>
           </div>
