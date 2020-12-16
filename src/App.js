@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Charts from "./Charts";
 import { Select } from "antd";
 import greengraph from "../src/images/green.png";
@@ -8,9 +9,16 @@ import blackgraph from "../src/images/black.png";
 const { Option } = Select;
 
 function App() {
-  const [principal, setPrincipal] = useState("");
+  const [principal, setPrincipal] = useState(15000);
   const [years, setYears] = useState(1);
   const [currencyicon, setCurrencyicon] = useState("₹");
+  const [risk, setRisk] = useState("low");
+  const [inputs, setInputs] = useState({
+    sip: 15000,
+    cagr: 7,
+    time: years,
+    curr: currencyicon,
+  });
 
   window.addEventListener("resize", changeDivSize);
 
@@ -19,7 +27,7 @@ function App() {
   }
 
   function handleChange(value) {
-    console.log(`selected ${value}`);
+    setRisk(value);
   }
 
   function getcurrencyicon(e) {
@@ -43,7 +51,33 @@ function App() {
     }
   }
 
-  console.log(principal, years, currencyicon);
+  useEffect(() => {
+    let cagr = 7;
+    if (currencyicon === "₹") {
+      if (risk === "low") {
+        cagr = 7;
+      } else if (risk === "average") {
+        cagr = 11;
+      } else if (risk === "high") {
+        cagr = 15;
+      }
+    } else if (currencyicon === "$") {
+      if (risk === "low") {
+        cagr = 5;
+      } else if (risk === "average") {
+        cagr = 9;
+      } else if (risk === "high") {
+        cagr = 13;
+      }
+    }
+    setInputs({
+      sip: principal,
+      cagr: cagr,
+      time: years,
+      curr: currencyicon,
+    });
+    console.log(principal, years, currencyicon, risk);
+  }, [principal, years, currencyicon, risk]);
 
   return (
     <div className="App">
@@ -56,8 +90,7 @@ function App() {
             <div className="edufund__rangeselect__investment_details">
               I can invest{" "}
               <input
-                type="text"
-                defaultValue="$"
+                type="number"
                 maxLength="6"
                 onChange={(e) => setPrincipal(e.target.value)}
               />{" "}
@@ -158,7 +191,7 @@ function App() {
           </div>
         </div>
         <div className="edufund__chart">
-          <Charts />
+          <Charts inputs={inputs} />
         </div>
       </div>
     </div>
